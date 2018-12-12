@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert http query string to JSON</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<div style="margin: 0px auto;width: 400px;">
+    <h1>HTTP请求参数</h1>
+    <textarea id="content" style="width: 400px" rows="5">amount=2000.0&mobileType=2&token=0bffdacc3bbd4170911417abbd7f26e2&tradePwd=E10ADC3949BA59ABBE56E057F20F883E&userId=216&versionNumber=1.0.0</textarea>
+    <br>
+    <input id="doit" type="button" value="转换">
+    <br>
+    <textarea id="changed" style="width: 400px" rows="5"></textarea>
+</div>
+</body>
+<script>
+    $('#doit').click(function () {
+        var result = '{';
+        var content = $('#content').html();
+        console.log(content);
+        // 按& 分隔
+        var strs = content.split('&amp;');
+        console.dir(strs)
+        for (var str of strs) {
+            // 按 = 分隔
+            var keyValue = str.split("=");
+            result += '"' + keyValue[0] + '":"' + keyValue[1] + '",'
+        }
+        if (result.charAt(result.length - 1) == ','){
+            result = result.substring(0, result.length - 1);
+        }
+        result += '}';
+        console.log(result);
+        $('#changed').html(result);
+    });
+</script>
+</html>
