@@ -17,11 +17,11 @@
 </body>
 <script>
     $('#doit').click(function () {
-        var result = '{';
-        var content = $('#content').html();
+        let result = '{';
+        let content = $('#content').val();
         console.log(content);
         // 按& 分隔
-        var strs = content.split('&amp;');
+        let strs = content.split('&');
         console.dir(strs)
         for (var str of strs) {
             // 按 = 分隔
